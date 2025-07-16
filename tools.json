@@ -1,0 +1,162 @@
+[
+  {
+    "key": "chatgpt",
+    "name": "ChatGPT",
+    "desc": "روبوت دردشة ذكي من OpenAI.",
+    "logo": "logos/chatgpt.png",
+    "link": "https://chat.openai.com",
+    "category": "chat"
+  },
+  {
+    "key": "deepseek",
+    "name": "DeepSeek Chat",
+    "desc": "روبوت دردشة ذكي يعتمد على الذكاء الاصطناعي من DeepSeek.",
+    "logo": "logos/deepseek.png",
+    "link": "https://chat.deepseek.com",
+    "category": "chat"
+  },
+  {
+    "key": "lovable",
+    "name": "Lovable",
+    "desc": "منصة لإنشاء مواقع ويب مذهلة باستخدام الذكاء الاصطناعي.",
+    "logo": "logos/lovable.png",
+    "link": "https://lovable.dev",
+    "category": "website"
+  },
+  {   
+    "key": "bolt",
+    "name": "Bolt",
+    "desc": "أنشئ تطبيقات ذكاء اصطناعي بسرعة دون كتابة كود.",
+    "logo": "logos/bolt.png",
+    "link": "https://bolt.new",
+    "category": "builder"
+  },
+  { 
+    "key": "grok",
+    "name": "Grok",
+    "desc": "مساعد ذكاء اصطناعي من X (Twitter) بإجابات مرحة وذكية.",
+    "logo": "logos/grok.png",
+    "link": "https://grok.com",
+    "category": "chat"
+  },
+  {
+    "key": "claude",
+    "name": "Claude",
+    "desc": "دردشة آمنة من Anthropic.",
+    "logo": "logos/claude.png",
+    "link": "https://claude.ai",
+    "category": "chat"
+  },
+  {
+    "key": "gemini",
+    "name": "Gemini",
+    "desc": "ذكاء متعدد الوسائط من Google.",
+    "logo": "logos/gemini.png",
+    "link": "https://gemini.google.com",
+    "category": "chat"
+  },
+  {
+    "key": "notion",
+    "name": "Notion AI",
+    "desc": "مساعد كتابة داخل Notion.",
+    "logo": "logos/notion.png",
+    "link": "https://www.notion.so/product/ai",
+    "category": "writing"
+  },
+  {
+    "key": "copyai",
+    "name": "Copy.ai",
+    "desc": "كتابة تسويقية ذكية.",
+    "logo": "logos/copyai.png",
+    "link": "https://www.copy.ai",
+    "category": "writing"
+  },
+  {
+    "key": "gpt4",
+    "name": "GPT-4",
+    "desc": "أحدث نماذج OpenAI.",
+    "logo": "logos/openai.png",
+    "link": "https://openai.com/gpt-4",
+    "category": "writing"
+  },
+  {
+    "key": "phind",
+    "name": "Phind",
+    "desc": "محرك بحث للمبرمجين.",
+    "logo": "logos/phind.png",
+    "link": "https://www.phind.com",
+    "category": "search"
+  },
+  {
+    "key": "perplexity",
+    "name": "Perplexity AI",
+    "desc": "بحث ذكي بالذكاء الاصطناعي.",
+    "logo": "logos/perplexity.png",
+    "link": "https://www.perplexity.ai",
+    "category": "search"
+  },
+  {
+    "key": "midjourney",
+    "name": "Midjourney",
+    "desc": "توليد صور من نصوص.",
+    "logo": "logos/midjourney.png",
+    "link": "https://www.midjourney.com",
+    "category": "image"
+  },
+  {
+    "key": "leonardo",
+    "name": "Leonardo AI",
+    "desc": "فن رقمي وتوليد صور.",
+    "logo": "logos/leonardo.png",
+    "link": "https://leonardo.ai",
+    "category": "image"
+  },
+  {
+    "key": "pixray",
+    "name": "Pixray",
+    "desc": "تحويل النص إلى صور.",
+    "logo": "logos/pixray.png",
+    "link": "https://replicate.com/pixray",
+    "category": "image"
+  },
+  {
+    "key": "runway",
+    "name": "Runway ML",
+    "desc": "تحرير فيديو بالذكاء الاصطناعي.",
+    "logo": "logos/runway.png",
+    "link": "https://runwayml.com",
+    "category": "video"
+  },
+  {
+    "key": "kaiber",
+    "name": "Kaiber",
+    "desc": "تحويل صور إلى فيديو.",
+    "logo": "logos/kaiber.png",
+    "link": "https://www.kaiber.ai",
+    "category": "video"
+  },
+  {
+    "key": "did",
+    "name": "D-ID",
+    "desc": "تحريك صورك بالفيديو.",
+    "logo": "logos/did.png",
+    "link": "https://www.d-id.com",
+    "category": "video"
+  },
+  {
+    "key": "elevenlabs",
+    "name": "ElevenLabs",
+    "desc": "تحويل النص إلى صوت طبيعي.",
+    "logo": "logos/elevenlabs.png",
+    "link": "https://www.elevenlabs.io",
+    "category": "audio"
+  },
+  {
+    "key": "deepai",
+    "name": "DeepAI",
+    "desc": "واجهة API مجانية للذكاء الاصطناعي.",
+    "logo": "logos/deepai.png",
+    "link": "https://deepai.org",
+    "category": "image"
+  }
+]
