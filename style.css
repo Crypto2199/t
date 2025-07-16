@@ -1,0 +1,236 @@
+/* الخط العام */
+body {
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f9fa;
+  color: #222;
+  transition: background 0.5s, color 0.5s;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(123, 188, 255, 0.15) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(255, 153, 204, 0.15) 0%, transparent 25%),
+    radial-gradient(circle at 30% 60%, rgba(153, 255, 204, 0.15) 0%, transparent 20%);
+  z-index: -1;
+}
+
+/* تأثير الشبكة الخلفية */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(200, 200, 200, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 200, 200, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* الوضع الليلي */
+body.dark {
+  background: linear-gradient(to bottom, #121212, #1e1e1e);
+  color: #f5f5f5;
+}
+
+.dark .hero {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.dark input, .dark select {
+  background: #222;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dark .tool-card {
+  background: #1f1f1f;
+  color: #eee;
+}
+
+header.hero {
+  padding: 2em 1em;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+header.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.4em;
+}
+
+header.hero p {
+  font-size: 1.1em;
+  margin: 0;
+  opacity: 0.85;
+}
+
+.controls {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+select, button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+#toggleDark {
+  background: #111;
+  color: #fff;
+}
+
+.filters {
+  text-align: center;
+  padding: 1em;
+}
+
+.filters button {
+  margin: 5px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 20px;
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filters button:hover, .filters button.active {
+  background: #0056b3;
+}
+
+#searchInput {
+  display: block;
+  margin: 1.2em auto;
+  padding: 12px;
+  width: 80%;
+  max-width: 500px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 4px rgba(0,0,0,0.05);
+}
+
+.tools-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  padding: 1em;
+}
+
+.tool-card {
+  width: 260px;
+  background: #fff;
+  border-radius: 15px;
+  padding: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+  text-align: left;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+}
+
+.tool-card h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tool-card img {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+
+.tool-card p {
+  font-size: 0.95em;
+  opacity: 0.9;
+}
+
+.tool-card a {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  background: #28a745;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+/* تحسينات للوضع الليلي */
+body.dark::before {
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(70, 130, 180, 0.1) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(178, 34, 34, 0.1) 0%, transparent 25%),
+    radial-gradient(circle at 30% 60%, rgba(34, 139, 34, 0.1) 0%, transparent 20%);
+}
+
+body.dark::after {
+  background-image: 
+    linear-gradient(rgba(100, 100, 100, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 100, 100, 0.1) 1px, transparent 1px);
+}
+
+/* تحسينات للعناصر الأمامية */
+header.hero {
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+
+body.dark header.hero {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.tool-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(8px);
+}
+
+body.dark .tool-card {
+  background: rgba(30, 30, 30, 0.9) !important;
+}
+
+.filters button {
+  backdrop-filter: blur(8px);
+  background: rgba(0, 123, 255, 0.9) !important;
+}
+
+#searchInput {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+body.dark #searchInput {
+  background: rgba(30, 30, 30, 0.9) !important;
+}
+
+.tool-card a:hover {
+  background: #1e7e34;
+}
