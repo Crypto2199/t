@@ -1,280 +1,497 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AI Tools Directory</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>omniwebAI - 100 AI Widgets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hf-blue': '#ffdd33',
+                        'hf-purple': '#7b66ff',
+                        'hf-green': '#00cca5',
+                        'hf-pink': '#ff70b8',
+                        'hf-orange': '#ff8c37',
+                    }
+                }
+            }
         }
-        .login-modal {
-            backdrop-filter: blur(5px);
-        }
-        .category-chip {
+    </script>
+    <style>
+        .widget-card {
             transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
-        .category-chip:hover {
-            transform: scale(1.05);
+        .widget-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .modal {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .modal-hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
         }
         .like-btn.liked {
             color: #ef4444;
         }
     </style>
-
-<style>
-  body {
-    background-color: #0f0f1a;
-    color: #f0f0f0;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  .tool-card {
-    background: linear-gradient(135deg, #3b3b98, #4e54c8);
-    color: white;
-    border-radius: 16px;
-    padding: 20px;
-    margin: 10px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
-  }
-  .tool-card:hover {
-    transform: translateY(-5px);
-  }
-  .like-btn i {
-    color: white;
-  }
-  .pagination {
-    background-color: #1e1e2f;
-    padding: 10px;
-    border-radius: 10px;
-  }
-</style>
-
 </head>
-<body class="bg-gray-50">
-<!-- Header with Login -->
-<header class="bg-white shadow-sm sticky top-0 z-50">
-<div class="container mx-auto px-4 py-3 flex justify-between items-center">
-<div class="flex items-center space-x-2">
-<div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
-<span class="text-white font-bold text-xl">AI</span>
-</div>
-<h1 class="text-xl font-bold text-gray-800">AI Tools Hub</h1>
-</div>
-<div class="flex items-center space-x-4">
-<button class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full hover:opacity-90 transition" id="login-btn">
-                    Login
-                </button>
-<div class="hidden items-center space-x-2" id="user-profile">
-<div class="w-8 h-8 rounded-full bg-gray-200"></div>
-<span class="text-sm font-medium">User</span>
-<button class="text-gray-500 hover:text-gray-700" id="logout-btn">
-<i class="fas fa-sign-out-alt"></i>
-</button>
-</div>
-</div>
-</div>
-</header>
-<!-- Login Modal -->
-<div class="fixed inset-0 z-50 hidden items-center justify-center login-modal" id="login-modal">
-<div class="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md">
-<div class="flex justify-between items-center mb-6">
-<h2 class="text-2xl font-bold text-gray-800">Welcome Back</h2>
-<button class="text-gray-500 hover:text-gray-700" id="close-modal">
-<i class="fas fa-times"></i>
-</button>
-</div>
-<form class="space-y-4">
-<div>
-<label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-<input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="email"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-<input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="password"/>
-</div>
-<button class="w-full py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:opacity-90 transition" id="submit-login" type="button">
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-hf-blue to-hf-purple rounded-lg flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6">
+                        <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
+                        <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 14.625v-9.75zM8.25 9.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM18.75 9a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V9.75a.75.75 0 00-.75-.75h-.008zM4.5 9.75A.75.75 0 015.25 9h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z" clip-rule="evenodd" />
+                        <path d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z" />
+                    </svg>
+                </div>
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-hf-blue to-hf-purple bg-clip-text text-transparent">omniwebAI</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-hf-purple font-medium">Explore</a>
+                <a href="#" class="text-gray-600 hover:text-hf-purple font-medium">Collections</a>
+                <a href="#" class="text-gray-600 hover:text-hf-purple font-medium">Docs</a>
+                <a href="#" class="text-gray-600 hover:text-hf-purple font-medium">Community</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button id="login-btn" class="px-4 py-2 bg-hf-purple text-white rounded-lg hover:bg-opacity-90 transition">
                     Sign In
                 </button>
-</form>
-<div class="mt-4 text-center text-sm text-gray-600">
-                Don't have an account? <a class="text-blue-500 hover:underline" href="#">Sign up</a>
-</div>
-</div>
-</div>
-<!-- Main Content -->
-<main class="container mx-auto px-4 py-8">
-<!-- Hero Section -->
-<section class="mb-12">
-<div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 md:p-12">
-<h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Discover 100+ Powerful AI Tools</h1>
-<p class="text-lg text-gray-600 mb-6">Boost your productivity with our curated collection of the best AI applications</p>
-<div class="flex flex-wrap gap-2 mb-6" id="categoryFilters">
-<button class="category-chip px-3 py-1 bg-gray-200 rounded" data-category="all">All</button>
-<button class="category-chip px-3 py-1 bg-blue-100 text-blue-800 rounded" data-category="Writing">Writing</button>
-<button class="category-chip px-3 py-1 bg-purple-100 text-purple-800 rounded" data-category="Design">Design</button>
-<button class="category-chip px-3 py-1 bg-green-100 text-green-800 rounded" data-category="Coding">Coding</button>
-<button class="category-chip px-3 py-1 bg-red-100 text-red-800 rounded" data-category="Video">Video</button>
-<button class="category-chip px-3 py-1 bg-yellow-100 text-yellow-800 rounded" data-category="Audio">Audio</button>
-</div><div class="relative">
-<input class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="searchInput" placeholder="Search AI tools..." type="text"/>
-<i class="fas fa-search absolute left-3 top-3.5 text-gray-400"></i>
-</div>
-
-</div>
-</section>
-<!-- Tools Grid -->
-<section>
-<h2 class="text-2xl font-bold text-gray-800 mb-6">Featured AI Tools</h2>
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="toolsContainer"></div>
-<!-- Pagination -->
-<div class="mt-8 flex justify-center">
-<nav class="flex items-center space-x-1">
-<button class="px-3 py-1 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50">
-<i class="fas fa-chevron-left"></i>
-</button>
-<button class="px-3 py-1 rounded-lg bg-blue-500 text-white">1</button>
-<button class="px-3 py-1 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
-<button class="px-3 py-1 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
-<span class="px-2 text-gray-500">...</span>
-<button class="px-3 py-1 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">10</button>
-<button class="px-3 py-1 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50">
-<i class="fas fa-chevron-right"></i>
-</button>
-</nav>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="bg-gray-800 text-white py-8">
-<div class="container mx-auto px-4">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-<div>
-<h3 class="text-lg font-semibold mb-4">AI Tools Hub</h3>
-<p class="text-gray-400">Discover the best AI tools to enhance your productivity and creativity.</p>
-</div>
-<div>
-<h3 class="text-lg font-semibold mb-4">Categories</h3>
-<ul class="space-y-2">
-<li><a class="text-gray-400 hover:text-white" href="#">Writing</a></li>
-<li><a class="text-gray-400 hover:text-white" href="#">Design</a></li>
-<li><a class="text-gray-400 hover:text-white" href="#">Coding</a></li>
-<li><a class="text-gray-400 hover:text-white" href="#">Video</a></li>
-</ul>
-</div>
-<div>
-<h3 class="text-lg font-semibold mb-4">Resources</h3>
-<ul class="space-y-2">
-<li><a class="text-gray-400 hover:text-white" href="#">Blog</a></li>
-<li><a class="text-gray-400 hover:text-white" href="#">Tutorials</a></li>
-<li><a class="text-gray-400 hover:text-white" href="#">Newsletter</a></li>
-</ul>
-</div>
-<div>
-<h3 class="text-lg font-semibold mb-4">Connect</h3>
-<div class="flex space-x-4">
-<a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-twitter"></i></a>
-<a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-linkedin"></i></a>
-<a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-instagram"></i></a>
-<a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-github"></i></a>
-</div>
-</div>
-</div>
-<div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-<p>© 2025 AI Tools Hub. All rights reserved.</p>
-</div>
-</div>
-</footer>
-
-
-// إضافة وظائف الإعجاب
-document.addEventListener("click", function(e) {
-  if (e.target.closest(".like-btn")) {
-    const button = e.target.closest(".like-btn");
-    const icon = button.querySelector("i");
-    const toolName = button.closest(".tool-card").querySelector("h3").textContent;
-
-    if (icon.classList.contains("far")) {
-      icon.classList.remove("far");
-      icon.classList.add("fas", "liked");
-      localStorage.setItem(`liked_` + toolName, 'true');
-    } else {
-      icon.classList.remove("fas", "liked");
-      icon.classList.add("far");
-      localStorage.removeItem(`liked_` + toolName);
-    }
-  }
-});
-
-// تمييز الأدوات المعجبة بها عند العرض
-function markLikedTools() {
-  document.querySelectorAll(".tool-card").forEach(card => {
-    const name = card.querySelector("h3").textContent;
-    if (localStorage.getItem(`liked_` + name) === 'true') {
-      const icon = card.querySelector(".like-btn i");
-      if (icon) {
-        icon.classList.remove("far");
-        icon.classList.add("fas", "liked");
-      }
-    }
-  });
-}
-setTimeout(markLikedTools, 500);
-
-// تفعيل تسجيل الدخول السابق
-if (localStorage.getItem('isLoggedIn') === 'true') {
-    const loginBtn = document.getElementById('login-btn');
-    const userProfile = document.getElementById('user-profile');
-    loginBtn?.classList.add('hidden');
-    userProfile?.classList.remove('hidden');
-    userProfile?.classList.add('flex');
-}
-</script>
-<!-- JavaScript moved to external file -->
-<script src="main.js">
-  async function loadTools() {
-    try {
-      const response = await fetch('tools.json');
-      const tools = await response.json();
-
-      const container = document.getElementById('toolsContainer');
-      container.innerHTML = '';
-
-      tools.forEach(tool => {
-        const toolCard = document.createElement('div');
-        toolCard.className = 'tool-card p-4 bg-white rounded-xl shadow hover:shadow-md transition';
-
-        toolCard.innerHTML = `
-          <div class="flex items-center space-x-4 mb-4">
-            <img src="${tool.logo}" alt="${tool.name}" class="w-12 h-12 object-contain" onerror="this.src='default.png'">
-            <div>
-              <h3 class="text-lg font-bold text-gray-800">${tool.name}</h3>
-              <p class="text-sm text-gray-500">${tool.category}</p>
+                <button class="md:hidden text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
             </div>
-          </div>
-          <p class="text-sm text-gray-600 mb-4">${tool.description}</p>
-          <div class="flex justify-between items-center">
-            <a href="${tool.link}" target="_blank" class="text-blue-500 hover:underline">Visit</a>
-            <button class="like-btn text-gray-400 hover:text-red-500 transition">
-              <i class="far fa-heart"></i>
-            </button>
-          </div>
-        `;
+        </div>
+    </header>
 
-        container.appendChild(toolCard);
-      });
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal modal-hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-gray-800">Sign In</h2>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-hf-purple focus:border-transparent">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-hf-purple focus:border-transparent">
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember" class="h-4 w-4 text-hf-purple focus:ring-hf-purple border-gray-300 rounded">
+                        <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                    </div>
+                    <a href="#" class="text-sm text-hf-purple hover:underline">Forgot password?</a>
+                </div>
+                <button type="submit" class="w-full py-2 px-4 bg-hf-purple text-white rounded-md hover:bg-opacity-90 transition">Sign In</button>
+            </form>
+            <div class="mt-4 text-center">
+                <p class="text-sm text-gray-600">Don't have an account? <a href="#" class="text-hf-purple hover:underline">Sign up</a></p>
+            </div>
+        </div>
+    </div>
 
-      markLikedTools();
-    } catch (error) {
-      console.error('Error loading tools:', error);
-    }
-  }
+    <!-- User Dropdown (hidden by default) -->
+    <div id="user-dropdown" class="hidden absolute right-4 top-16 bg-white rounded-lg shadow-lg py-2 w-48 z-50">
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Widgets</a>
+        <div class="border-t border-gray-200 my-1"></div>
+        <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign Out</a>
+    </div>
 
-  document.addEventListener('DOMContentLoaded', loadTools);
-</script>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Explore AI Widgets</h2>
+                <p class="text-gray-600">Discover and interact with 100 powerful AI tools</p>
+            </div>
+            <div class="mt-4 md:mt-0 w-full md:w-auto">
+                <div class="relative">
+                    <input type="text" placeholder="Search widgets..." class="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-hf-purple focus:border-transparent">
+                    <button class="absolute right-3 top-2 text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="flex flex-wrap gap-2 mb-6">
+            <button class="px-3 py-1 bg-hf-blue bg-opacity-20 text-hf-blue rounded-full text-sm font-medium">All</button>
+            <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Text</button>
+            <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Image</button>
+            <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Audio</button>
+            <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Video</button>
+            <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Code</button>
+            <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Chat</button>
+        </div>
+
+        <!-- Widget Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Widget 1 -->
+            <div class="widget-card bg-white rounded-xl overflow-hidden border border-gray-200">
+                <div class="h-40 bg-gradient-to-br from-hf-blue to-hf-purple flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-12 h-12">
+                        <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32l8.4-8.4z" />
+                        <path d="M5.25 5.25a3 3 0 00-3 3v10.5a3 3 0 003 3h10.5a3 3 0 003-3V13.5a.75.75 0 00-1.5 0v5.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5h5.25a.75.75 0 000-1.5H5.25z" />
+                    </svg>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Text Generator</h3>
+                        <button class="like-btn text-gray-400 hover:text-red-500">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Generate human-like text based on your prompts</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500">By OpenAI</span>
+                        <a href="#" class="text-sm text-hf-purple hover:underline">Try it</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 2 -->
+            <div class="widget-card bg-white rounded-xl overflow-hidden border border-gray-200">
+                <div class="h-40 bg-gradient-to-br from-hf-green to-hf-blue flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-12 h-12">
+                        <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Image Creator</h3>
+                        <button class="like-btn text-gray-400 hover:text-red-500">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Generate stunning images from text descriptions</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500">By Midjourney</span>
+                        <a href="#" class="text-sm text-hf-green hover:underline">Try it</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 3 -->
+            <div class="widget-card bg-white rounded-xl overflow-hidden border border-gray-200">
+                <div class="h-40 bg-gradient-to-br from-hf-pink to-hf-purple flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-12 h-12">
+                        <path d="M8.25 4.5a3.75 3.75 0 117.5 0v8.25a3.75 3.75 0 11-7.5 0V4.5z" />
+                        <path d="M6 10.5a.75.75 0 01.75.75v1.5a5.25 5.25 0 1010.5 0v-1.5a.75.75 0 011.5 0v1.5a6.751 6.751 0 01-6 6.709v2.291h3a.75.75 0 010 1.5h-7.5a.75.75 0 010-1.5h3v-2.291a6.751 6.751 0 01-6-6.709v-1.5A.75.75 0 016 10.5z" />
+                    </svg>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Voice Cloning</h3>
+                        <button class="like-btn text-gray-400 hover:text-red-500">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Clone any voice and generate natural speech</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500">By ElevenLabs</span>
+                        <a href="#" class="text-sm text-hf-pink hover:underline">Try it</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 4 -->
+            <div class="widget-card bg-white rounded-xl overflow-hidden border border-gray-200">
+                <div class="h-40 bg-gradient-to-br from-hf-orange to-hf-pink flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-12 h-12">
+                        <path d="M4.5 4.5a3 3 0 00-3 3v9a3 3 0 003 3h8.25a3 3 0 003-3v-9a3 3 0 00-3-3H4.5zM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.944-.945 2.56-.276 2.56 1.06v11.38c0 1.336-1.616 2.005-2.56 1.06z" />
+                    </svg>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Video Generator</h3>
+                        <button class="like-btn text-gray-400 hover:text-red-500">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Create videos from text prompts or images</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500">By RunwayML</span>
+                        <a href="#" class="text-sm text-hf-orange hover:underline">Try it</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 5 -->
+            <div class="widget-card bg-white rounded-xl overflow-hidden border border-gray-200">
+                <div class="h-40 bg-gradient-to-br from-hf-purple to-hf-blue flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-12 h-12">
+                        <path fill-rule="evenodd" d="M14.447 3.027a.75.75 0 01.527.92l-4.5 16.5a.75.75 0 01-1.448-.394l4.5-16.5a.75.75 0 01.921-.526zM16.72 6.22a.75.75 0 011.06 0l5.25 5.25a.75.75 0 010 1.06l-5.25 5.25a.75.75 0 11-1.06-1.06L21.44 12l-4.72-4.72a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M2.28 6.22a.75.75 0 010 1.06L7.56 12l-5.28 5.28a.75.75 0 101.06 1.06l5.25-5.25a.75.75 0 000-1.06l-5.25-5.25a.75.75 0 00-1.06 0z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Code Assistant</h3>
+                        <button class="like-btn text-gray-400 hover:text-red-500">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">AI pair programmer that suggests code completions</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500">By GitHub</span>
+                        <a href="#" class="text-sm text-hf-purple hover:underline">Try it</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 6 -->
+            <div class="widget-card bg-white rounded-xl overflow-hidden border border-gray-200">
+                <div class="h-40 bg-gradient-to-br from-hf-blue to-hf-green flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-12 h-12">
+                        <path d="M5.566 4.657A4.505 4.505 0 016.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0015.75 3h-7.5a3 3 0 00-2.684 1.657zM2.25 12a3 3 0 013-3h13.5a3 3 0 013 3v6a3 3 0 01-3 3H5.25a3 3 0 01-3-3v-6zM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 016.75 6h10.5a3 3 0 012.683 1.657A4.505 4.505 0 0018.75 7.5H5.25z" />
+                    </svg>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Chat Assistant</h3>
+                        <button class="like-btn text-gray-400 hover:text-red-500">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Advanced conversational AI for any topic</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500">By Anthropic</span>
+                        <a href="#" class="text-sm text-hf-blue hover:underline">Try it</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 7 -->
+            <div class="widget-card bg-white rounded-xl overflow-hidden border border-gray-200">
+                <div class="h-40 bg-gradient-to-br from-hf-green to-hf-purple flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-12 h-12">
+                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM9 7.5A.75.75 0 019 9v1.5c.001.351.088.696.258 1.012a4.5 4.5 0 011.543 1.543 2.73 2.73 0 001.012.258H15A.75.75 0 0115 15h-3a.75.75 0 01-.75-.75v-3a.75.75 0 01.75-.75h3a.75.75 0 01.53.22.75.75 0 01.22.53V15a.75.75 0 01-.75.75h-3a2.25 2.25 0 00-2.25 2.25v3a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75V9A.75.75 0 019 7.5z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Math Solver</h3>
+                        <button class="like-btn text-gray-400 hover:text-red-500">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Step-by-step solutions to math problems</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500">By Wolfram</span>
+                        <a href="#" class="text-sm text-hf-green hover:underline">Try it</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 8 -->
+            <div class="widget-card bg-white rounded-xl overflow-hidden border border-gray-200">
+                <div class="h-40 bg-gradient-to-br from-hf-pink to-hf-orange flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-12 h-12">
+                        <path d="M11.7 2.805a.75.75 0 01.6 0A60.65 60.65 0 0122.83 8.72a.75.75 0 01-.231 1.337 49.949 49.949 0 00-9.902 3.912l-.003.002-.34.18a.75.75 0 01-.707 0A50.009 50.009 0 007.5 12.174v-.224c0-.131.067-.248.172-.311a54.614 54.614 0 014.653-2.52.75.75 0 00-.65-1.352 56.129 56.129 0 00-4.78 2.589 1.858 1.858 0 00-.859 1.228 49.803 49.803 0 00-4.634-1.527.75.75 0 01-.231-1.337A60.653 60.653 0 0111.7 2.805z" />
+                        <path d="M13.06 15.473a48.45 48.45 0 017.666-3.282c.134 1.414.22 2.843.255 4.285a.75.75 0 01-.46.71 47.878 47.878 0 00-8.105 4.342.75.75 0 01-.832 0 47.877 47.877 0 00-8.104-4.342.75.75 0 01-.461-.71c.035-1.442.121-2.87.255-4.286A48.4 48.4 0 016 13.18v1.27a1.5 1.5 0 00-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.661a6.729 6.729 0 00.551-1.608 1.5 1.5 0 00.14-2.67v-.645a48.549 48.549 0 013.44 1.668 2.25 2.25 0 002.12 0z" />
+                        <path d="M4.462 19.462c.42-.419.753-.89 1-1.394.453.213.902.434 1.347.661a6.742 6.742 0 01-1.286 1.794.75.75 0 11-1.06-1.06z" />
+                    </svg>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Language Translator</h3>
+                        <button class="like-btn text-gray-400 hover:text-red-500">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">Translate between 100+ languages instantly</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500">By DeepL</span>
+                        <a href="#" class="text-sm text-hf-pink hover:underline">Try it</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More widgets would follow the same pattern -->
+            <!-- For brevity, I'm showing 8 widgets but in a real implementation there would be 100 -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center mt-10">
+            <nav class="flex items-center space-x-2">
+                <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <button class="px-3 py-1 rounded-md bg-hf-purple text-white">1</button>
+                <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
+                <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
+                <span class="px-2 text-gray-500">...</span>
+                <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50">10</button>
+                <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 mt-16">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-hf-blue to-hf-purple rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-5 h-5">
+                                <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
+                                <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 14.625v-9.75zM8.25 9.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM18.75 9a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V9.75a.75.75 0 00-.75-.75h-.008zM4.5 9.75A.75.75 0 015.25 9h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z" clip-rule="evenodd" />
+                                <path d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold bg-gradient-to-r from-hf-blue to-hf-purple bg-clip-text text-transparent">omniwebAI</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">The most comprehensive collection of AI tools on the web.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">Widgets</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">API</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">Enterprise</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">Documentation</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">Tutorials</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">Blog</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">About</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">Careers</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">Contact</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-hf-purple text-sm">Legal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 omniwebAI. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-hf-purple">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-hf-purple">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-hf-purple">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-hf-purple">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Login/Logout functionality
+        const loginBtn = document.getElementById('login-btn');
+        const closeModal = document.getElementById('close-modal');
+        const loginModal = document.getElementById('login-modal');
+        const userDropdown = document.getElementById('user-dropdown');
+        const logoutBtn = document.getElementById('logout-btn');
+        
+        let isLoggedIn = false;
+        
+        loginBtn.addEventListener('click', () => {
+            if (isLoggedIn) {
+                // Show user dropdown
+                userDropdown.classList.toggle('hidden');
+            } else {
+                // Show login modal
+                loginModal.classList.remove('modal-hidden');
+            }
+        });
+        
+        closeModal.addEventListener('click', () => {
+            loginModal.classList.add('modal-hidden');
+        });
+        
+        // Simulate login
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            isLoggedIn = true;
+            loginBtn.textContent = 'My Account';
+            loginModal.classList.add('modal-hidden');
+        });
+        
+        // Logout functionality
+        logoutBtn.addEventListener('click', () => {
+            isLoggedIn = false;
+            loginBtn.textContent = 'Sign In';
+            userDropdown.classList.add('hidden');
+        });
+        
+        // Close modal when clicking outside
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.add('modal-hidden');
+            }
+        });
+        
+        // Like button functionality
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    this.classList.add('liked');
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    this.classList.remove('liked');
+                }
+            });
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#login-btn') && !e.target.closest('#user-dropdown')) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>
