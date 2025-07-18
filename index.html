@@ -72,7 +72,6 @@
       background-position: center;
       bottom: 0;
       right: -60px;
-      animation: moveObstacle 2s linear infinite;
     }
     @keyframes moveObstacle {
       0%   { right: -60px; }
@@ -180,6 +179,7 @@
     let isGameOver = false;
     let scoreInterval;
     let speed = 2;
+    let gameStarted = false;
     const obstacleImages = ['rock.png', 'bush.png', 'snail.png'];
 
     highScoreDisplay.textContent = `الأعلى: ${highScore}`;
@@ -187,6 +187,8 @@
     function startCountdown() {
       startScreen.style.display = "none";
       countdownScreen.style.display = "flex";
+      obstacle.style.display = "none";
+      gameStarted = false;
       let count = 3;
       countdownNumber.textContent = count;
 
@@ -206,6 +208,9 @@
       game.style.display = "block";
       bgMusic.volume = 0.4;
       bgMusic.play();
+      obstacle.style.display = "block";
+      obstacle.style.animation = `moveObstacle ${speed}s linear infinite`;
+      gameStarted = true;
       startScoring();
     }
 
@@ -249,16 +254,18 @@
     }
 
     let checkCollision = setInterval(() => {
+      if (!gameStarted || isGameOver) return;
       const playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
       const obstacleRight = parseInt(window.getComputedStyle(obstacle).getPropertyValue("right"));
 
-      if (obstacleRight > 60 && obstacleRight < 130 && playerBottom < 60 && !isGameOver) {
+      if (obstacleRight > 60 && obstacleRight < 130 && playerBottom < 60) {
         endGame();
       }
     }, 10);
 
     function endGame() {
       isGameOver = true;
+      gameStarted = false;
       clearInterval(scoreInterval);
       failSound.play();
       bgMusic.pause();
@@ -277,9 +284,11 @@
 
     function restartGame() {
       isGameOver = false;
+      gameStarted = true;
       score = 0;
       scoreDisplay.textContent = `النقاط: 0`;
       gameOverScreen.style.display = "none";
+      obstacle.style.display = "block";
       obstacle.style.animation = `moveObstacle ${speed}s linear infinite`;
       bgMusic.currentTime = 0;
       bgMusic.play();
