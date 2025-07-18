@@ -72,6 +72,11 @@
       background-position: center;
       bottom: 0;
       right: -60px;
+      display: none;
+    }
+    @keyframes moveObstacle {
+      0%   { right: -60px; }
+      100% { right: 740px; }
     }
     .jump {
       animation: jump 0.5s ease-out;
@@ -182,7 +187,6 @@
     function startCountdown() {
       startScreen.style.display = "none";
       countdownScreen.style.display = "flex";
-      obstacle.style.display = 'none';
       let count = 3;
       countdownNumber.textContent = count;
 
@@ -200,19 +204,19 @@
 
     function startGame() {
       game.style.display = "block";
-      bgMusic.volume = 0.4;
-      bgMusic.play();
       isGameOver = false;
       score = 0;
-      speed = 3.5;
-      obstacle.style.display = 'none';
+      scoreDisplay.textContent = `النقاط: 0`;
+      obstacle.style.right = "-60px";
+      obstacle.style.display = "block";
+      bgMusic.volume = 0.4;
+      bgMusic.play();
 
       setTimeout(() => {
-        obstacle.style.display = 'block';
         obstacle.style.animation = `moveObstacle ${speed}s linear infinite`;
-        updateObstacleImage();
         startScoring();
-      }, 800);
+        collisionCheckEnabled = true;
+      }, 1000);
     }
 
     function jump() {
@@ -232,11 +236,12 @@
     document.addEventListener("click", jump);
 
     function startScoring() {
-      scoreDisplay.textContent = `النقاط: ${score}`;
+      updateObstacleImage();
       scoreInterval = setInterval(() => {
+        if (isGameOver) return;
         score++;
         scoreDisplay.textContent = `النقاط: ${score}`;
-        if (score % 100 === 0 && speed > 1.2) {
+        if (score % 100 === 0 && speed > 1.5) {
           speed -= 0.2;
           obstacle.style.animation = `moveObstacle ${speed}s linear infinite`;
         }
@@ -251,10 +256,14 @@
       obstacle.style.backgroundImage = `url('${img}')`;
     }
 
+    let collisionCheckEnabled = false;
     setInterval(() => {
+      if (!collisionCheckEnabled || isGameOver) return;
+
       const playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
       const obstacleRight = parseInt(window.getComputedStyle(obstacle).getPropertyValue("right"));
-      if (obstacleRight > 60 && obstacleRight < 130 && playerBottom < 60 && !isGameOver && obstacle.style.display !== 'none') {
+
+      if (obstacleRight > 60 && obstacleRight < 130 && playerBottom < 60) {
         endGame();
       }
     }, 10);
@@ -280,6 +289,8 @@
     function restartGame() {
       gameOverScreen.style.display = "none";
       game.style.display = "none";
+      obstacle.style.animation = "none";
+      obstacle.style.right = "-60px";
       startCountdown();
     }
 
@@ -288,6 +299,8 @@
       game.style.display = "none";
       startScreen.style.display = "flex";
       bgMusic.pause();
+      obstacle.style.animation = "none";
+      obstacle.style.right = "-60px";
     }
   </script>
 </body>
