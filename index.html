@@ -87,6 +87,13 @@
       50%  { bottom: 130px; }
       100% { bottom: 0; }
     }
+    .flash {
+      animation: flashRed 0.3s;
+    }
+    @keyframes flashRed {
+      0% { background-color: red; }
+      100% { background-color: white; }
+    }
     #score, #highScore {
       position: absolute;
       top: 10px;
@@ -197,7 +204,7 @@
 
     function startGame() {
       game.style.display = "block";
-      bgMusic.volume = 0.5;
+      bgMusic.volume = 0.4;
       bgMusic.play();
       startScoring();
     }
@@ -226,10 +233,11 @@
       scoreInterval = setInterval(() => {
         score++;
         scoreDisplay.textContent = `النقاط: ${score}`;
-
-        if (score % 10 === 0 && speed > 0.8) {
-          speed -= 0.1;
+        if (score % 100 === 0 && speed > 0.7) {
+          speed -= 0.2;
           obstacle.style.animation = `moveObstacle ${speed}s linear infinite`;
+        }
+        if (score % 20 === 0) {
           updateObstacleImage();
         }
       }, 1000);
@@ -244,7 +252,7 @@
       const playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
       const obstacleRight = parseInt(window.getComputedStyle(obstacle).getPropertyValue("right"));
 
-      if (obstacleRight > 590 && obstacleRight < 650 && playerBottom < 60 && !isGameOver) {
+      if (obstacleRight > 60 && obstacleRight < 130 && playerBottom < 60 && !isGameOver) {
         endGame();
       }
     }, 10);
@@ -254,6 +262,8 @@
       clearInterval(scoreInterval);
       failSound.play();
       bgMusic.pause();
+      game.classList.add("flash");
+      setTimeout(() => game.classList.remove("flash"), 200);
       obstacle.style.animation = "none";
       obstacle.style.right = window.getComputedStyle(obstacle).getPropertyValue("right");
       finalScore.textContent = `نتيجتك: ${score}`;
@@ -277,7 +287,10 @@
     }
 
     function goBackToStart() {
-      location.reload();
+      gameOverScreen.style.display = "none";
+      game.style.display = "none";
+      startScreen.style.display = "flex";
+      bgMusic.pause();
     }
   </script>
 </body>
