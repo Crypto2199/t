@@ -227,13 +227,13 @@
 
     function startScoring() {
       score = 0;
-      speed = 2;
+      speed = 3;
       obstacle.style.animation = `moveObstacle ${speed}s linear infinite`;
       updateObstacleImage();
       scoreInterval = setInterval(() => {
         score++;
         scoreDisplay.textContent = `النقاط: ${score}`;
-        if (score % 100 === 0 && speed > 0.7) {
+        if (score % 100 === 0 && speed > 1.2) {
           speed -= 0.2;
           obstacle.style.animation = `moveObstacle ${speed}s linear infinite`;
         }
