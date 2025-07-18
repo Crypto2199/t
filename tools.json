@@ -1,0 +1,702 @@
+[
+  {
+    "name": "DeepSeek",
+    "description": "Advanced AI assistant with powerful capabilities",
+    "category": "Multi-purpose",
+    "logo": "deepseek.png",
+    "link": "https://www.deepseek.com"
+  },
+  {
+    "name": "ChatGPT",
+    "description": "Advanced AI chatbot for conversation and task assistance",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://chat.openai.com"
+  },
+  {
+    "name": "Midjourney",
+    "description": "AI art generator that creates stunning images from text",
+    "category": "Design",
+    "logo": "default.png",
+    "link": "https://www.midjourney.com"
+  },
+  {
+    "name": "GitHub Copilot",
+    "description": "AI pair programmer that suggests code in real-time",
+    "category": "Coding",
+    "logo": "default.png",
+    "link": "https://github.com/features/copilot"
+  },
+  {
+    "name": "Runway ML",
+    "description": "AI video editing tools for creators and filmmakers",
+    "category": "Video",
+    "logo": "default.png",
+    "link": "https://runwayml.com"
+  },
+  {
+    "name": "Boomy",
+    "description": "Create original music with AI in seconds",
+    "category": "Audio",
+    "logo": "default.png",
+    "link": "https://boomy.com"
+  },
+  {
+    "name": "Notion AI",
+    "description": "AI-powered workspace for notes, docs, and projects",
+    "category": "Productivity",
+    "logo": "default.png",
+    "link": "https://www.notion.so/product/ai"
+  },
+  {
+    "name": "DALL·E 2",
+    "description": "Create realistic images from text descriptions",
+    "category": "Design",
+    "logo": "default.png",
+    "link": "https://openai.com/dall-e-2"
+  },
+  {
+    "name": "Descript",
+    "description": "AI-powered video and podcast editing software",
+    "category": "Audio",
+    "logo": "default.png",
+    "link": "https://www.descript.com"
+  },
+  {
+    "name": "Claude",
+    "description": "AI assistant focused on helpful, harmless, and honest dialogue",
+    "category": "Chat",
+    "logo": "default.png",
+    "link": "https://www.anthropic.com/claude"
+  },
+  {
+    "name": "Grammarly",
+    "description": "AI-powered writing assistant for grammar and style",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://www.grammarly.com"
+  },
+  {
+    "name": "ElevenLabs",
+    "description": "AI voice generator with realistic speech synthesis",
+    "category": "Audio",
+    "logo": "default.png",
+    "link": "https://elevenlabs.io"
+  },
+  {
+    "name": "Stable Diffusion",
+    "description": "Open-source text-to-image generation model",
+    "category": "Design",
+    "logo": "default.png",
+    "link": "https://stablediffusionweb.com"
+  },
+  {
+    "name": "Jasper",
+    "description": "AI content generator for marketing copy and blogs",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://www.jasper.ai"
+  },
+  {
+    "name": "Copy.ai",
+    "description": "AI-powered copywriting tool for businesses",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://www.copy.ai"
+  },
+  {
+    "name": "Synthesia",
+    "description": "Create AI videos with virtual presenters",
+    "category": "Video",
+    "logo": "default.png",
+    "link": "https://www.synthesia.io"
+  },
+  {
+    "name": "Fireflies",
+    "description": "AI meeting assistant that records and transcribes",
+    "category": "Productivity",
+    "logo": "default.png",
+    "link": "https://fireflies.ai"
+  },
+  {
+    "name": "Otter.ai",
+    "description": "AI-powered voice meeting notes and transcription",
+    "category": "Audio",
+    "logo": "default.png",
+    "link": "https://otter.ai"
+  },
+  {
+    "name": "Beautiful.ai",
+    "description": "AI-powered presentation design tool",
+    "category": "Design",
+    "logo": "default.png",
+    "link": "https://www.beautiful.ai"
+  },
+  {
+    "name": "Murf.ai",
+    "description": "AI voice generator for realistic text-to-speech",
+    "category": "Audio",
+    "logo": "default.png",
+    "link": "https://murf.ai"
+  },
+  {
+    "name": "Pictory",
+    "description": "AI video creation from text content",
+    "category": "Video",
+    "logo": "default.png",
+    "link": "https://pictory.ai"
+  },
+  {
+    "name": "Lumen5",
+    "description": "AI video maker for content marketing",
+    "category": "Video",
+    "logo": "default.png",
+    "link": "https://lumen5.com"
+  },
+  {
+    "name": "Rytr",
+    "description": "AI writing assistant for various content types",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://rytr.me"
+  },
+  {
+    "name": "Writesonic",
+    "description": "AI writer for blogs, ads, and more",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://writesonic.com"
+  },
+  {
+    "name": "CopySmith",
+    "description": "AI content creation for e-commerce",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://copysmith.ai"
+  },
+  {
+    "name": "Headlime",
+    "description": "AI-powered landing page and copy generator",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://headlime.com"
+  },
+  {
+    "name": "ShortlyAI",
+    "description": "AI writing assistant for long-form content",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://www.shortlyai.com"
+  },
+  {
+    "name": "Wordtune",
+    "description": "AI-powered writing companion for better phrasing",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://www.wordtune.com"
+  },
+  {
+    "name": "Quillbot",
+    "description": "AI paraphrasing and summarizing tool",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://quillbot.com"
+  },
+  {
+    "name": "Inkforall",
+    "description": "AI content optimization for SEO",
+    "category": "SEO",
+    "logo": "default.png",
+    "link": "https://inkforall.com"
+  },
+  {
+    "name": "Frase",
+    "description": "AI content research and writing assistant",
+    "category": "SEO",
+    "logo": "default.png",
+    "link": "https://www.frase.io"
+  },
+  {
+    "name": "SurferSEO",
+    "description": "AI-powered SEO content editor",
+    "category": "SEO",
+    "logo": "default.png",
+    "link": "https://surferseo.com"
+  },
+  {
+    "name": "MarketMuse",
+    "description": "AI content planning and optimization",
+    "category": "SEO",
+    "logo": "default.png",
+    "link": "https://www.marketmuse.com"
+  },
+  {
+    "name": "Clearscope",
+    "description": "AI content optimization for relevance",
+    "category": "SEO",
+    "logo": "default.png",
+    "link": "https://www.clearscope.io"
+  },
+  {
+    "name": "Writer",
+    "description": "AI writing assistant for teams",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://writer.com"
+  },
+  {
+    "name": "HyperWrite",
+    "description": "AI writing assistant with browser extension",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://hyperwriteai.com"
+  },
+  {
+    "name": "Lex",
+    "description": "AI-powered word processor for writers",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://lex.page"
+  },
+  {
+    "name": "Sudowrite",
+    "description": "AI writing assistant for fiction writers",
+    "category": "Writing",
+    "logo": "default.png",
+    "link": "https://www.sudowrite.com"
+  },
+  {
+    "name": "Copy.ai for Sales",
+    "description": "AI-generated sales emails and outreach",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.copy.ai/sales"
+  },
+  {
+    "name": "Lavender",
+    "description": "AI email assistant for better response rates",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.lavender.ai"
+  },
+  {
+    "name": "Regie",
+    "description": "AI content platform for sales teams",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.regie.ai"
+  },
+  {
+    "name": "Crystal",
+    "description": "AI personality insights for better communication",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.crystalknows.com"
+  },
+  {
+    "name": "Exceed.ai",
+    "description": "AI-powered sales assistant for lead engagement",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.exceed.ai"
+  },
+  {
+    "name": "People.ai",
+    "description": "AI revenue intelligence platform",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.people.ai"
+  },
+  {
+    "name": "Gong",
+    "description": "AI revenue intelligence for customer interactions",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.gong.io"
+  },
+  {
+    "name": "Chorus",
+    "description": "AI conversation intelligence for sales teams",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.chorus.ai"
+  },
+  {
+    "name": "Cresta",
+    "description": "AI for real-time sales coaching",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.cresta.com"
+  },
+  {
+    "name": "Clari",
+    "description": "AI revenue operations platform",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.clari.com"
+  },
+  {
+    "name": "Outreach",
+    "description": "AI-powered sales engagement platform",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.outreach.io"
+  },
+  {
+    "name": "Salesloft",
+    "description": "AI sales engagement platform",
+    "category": "Sales",
+    "logo": "default.png",
+    "link": "https://www.salesloft.com"
+  },
+  {
+    "name": "Drift",
+    "description": "AI-powered conversational marketing",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://www.drift.com"
+  },
+  {
+    "name": "HubSpot AI",
+    "description": "AI features across HubSpot's CRM platform",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://www.hubspot.com/products/ai"
+  },
+  {
+    "name": "Marketo",
+    "description": "AI-powered marketing automation",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://www.marketo.com"
+  },
+  {
+    "name": "Pardot",
+    "description": "AI-powered B2B marketing automation",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://www.pardot.com"
+  },
+  {
+    "name": "Hootsuite Insights",
+    "description": "AI-powered social media listening",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://www.hootsuite.com/products/insights"
+  },
+  {
+    "name": "Sprout Social",
+    "description": "AI-powered social media management",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://sproutsocial.com"
+  },
+  {
+    "name": "Brandwatch",
+    "description": "AI consumer intelligence and social listening",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://www.brandwatch.com"
+  },
+  {
+    "name": "Crayon",
+    "description": "AI-powered competitive intelligence",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://www.crayon.co"
+  },
+  {
+    "name": "Albert",
+    "description": "AI marketing platform for digital advertising",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://albert.ai"
+  },
+  {
+    "name": "Persado",
+    "description": "AI-generated marketing language",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://www.persado.com"
+  },
+  {
+    "name": "Phrasee",
+    "description": "AI-powered marketing language optimization",
+    "category": "Marketing",
+    "logo": "default.png",
+    "link": "https://phrasee.co"
+  },
+  {
+    "name": "Acrolinx",
+    "description": "AI-powered content governance platform",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://www.acrolinx.com"
+  },
+  {
+    "name": "PathFactory",
+    "description": "AI-powered content intelligence platform",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://www.pathfactory.com"
+  },
+  {
+    "name": "BrightEdge",
+    "description": "AI-powered SEO and content performance",
+    "category": "SEO",
+    "logo": "default.png",
+    "link": "https://www.brightedge.com"
+  },
+  {
+    "name": "Concured",
+    "description": "AI content intelligence and strategy",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://www.concured.com"
+  },
+  {
+    "name": "OneSpot",
+    "description": "AI-powered content personalization",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://www.onespot.com"
+  },
+  {
+    "name": "Atomic Reach",
+    "description": "AI content optimization for engagement",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://www.atomicreach.com"
+  },
+  {
+    "name": "Curata",
+    "description": "AI-powered content curation platform",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://www.curata.com"
+  },
+  {
+    "name": "Scoop.it",
+    "description": "AI-powered content curation and publishing",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://www.scoop.it"
+  },
+  {
+    "name": "Ceralytics",
+    "description": "AI-powered content intelligence platform",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://www.ceralytics.com"
+  },
+  {
+    "name": "Narrativa",
+    "description": "AI-powered content generation at scale",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://narrativa.com"
+  },
+  {
+    "name": "Articoolo",
+    "description": "AI article writer for unique content",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://articoolo.com"
+  },
+  {
+    "name": "Wordsmith",
+    "description": "AI platform for generating narrative content",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://www.automatedinsights.com/wordsmith"
+  },
+  {
+    "name": "Yseop",
+    "description": "AI-powered natural language generation",
+    "category": "Content",
+    "logo": "default.png",
+    "link": "https://www.yseop.com"
+  },
+  {
+    "name": "Phrasetech",
+    "description": "AI-powered content generation for e-commerce",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.phrasetech.com"
+  },
+  {
+    "name": "ViSenze",
+    "description": "AI-powered visual search for e-commerce",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.visenze.com"
+  },
+  {
+    "name": "Syte",
+    "description": "AI-powered product discovery for retail",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.syte.ai"
+  },
+  {
+    "name": "Vue.ai",
+    "description": "AI-powered retail automation platform",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://vue.ai"
+  },
+  {
+    "name": "Dynamic Yield",
+    "description": "AI-powered personalization for e-commerce",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.dynamicyield.com"
+  },
+  {
+    "name": "Clerk",
+    "description": "AI-powered product recommendations",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.clerk.io"
+  },
+  {
+    "name": "Nosto",
+    "description": "AI-powered commerce experience platform",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.nosto.com"
+  },
+  {
+    "name": "Bloomreach",
+    "description": "AI-powered digital experience platform",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.bloomreach.com"
+  },
+  {
+    "name": "Emarsys",
+    "description": "AI-powered omnichannel customer engagement",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.emarsys.com"
+  },
+  {
+    "name": "Reflektion",
+    "description": "AI-powered search and discovery for retail",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.reflektion.com"
+  },
+  {
+    "name": "Sentient",
+    "description": "AI-powered e-commerce optimization",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.sentient.ai"
+  },
+  {
+    "name": "RichRelevance",
+    "description": "AI-powered personalization for retail",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.richrelevance.com"
+  },
+  {
+    "name": "Bluecore",
+    "description": "AI-powered retail marketing platform",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.bluecore.com"
+  },
+  {
+    "name": "Constructor",
+    "description": "AI-powered search for e-commerce",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://constructor.io"
+  },
+  {
+    "name": "Attentive",
+    "description": "AI-powered SMS marketing for e-commerce",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.attentivemobile.com"
+  },
+  {
+    "name": "Rokt",
+    "description": "AI-powered e-commerce transaction marketing",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.rokt.com"
+  },
+  {
+    "name": "Klevu",
+    "description": "AI-powered search for e-commerce stores",
+    "category": "E-commerce",
+    "logo": "default.png",
+    "link": "https://www.klevu.com"
+  },
+  {
+    "name": "Algolia",
+    "description": "AI-powered search and discovery API",
+    "category": "Search",
+    "logo": "default.png",
+    "link": "https://www.algolia.com"
+  },
+  {
+    "name": "Coveo",
+    "description": "AI-powered relevance platform",
+    "category": "Search",
+    "logo": "default.png",
+    "link": "https://www.coveo.com"
+  },
+  {
+    "name": "Sinequa",
+    "description": "AI-powered enterprise search platform",
+    "category": "Search",
+    "logo": "default.png",
+    "link": "https://www.sinequa.com"
+  },
+  {
+    "name": "Lucidworks",
+    "description": "AI-powered search and discovery platform",
+    "category": "Search",
+    "logo": "default.png",
+    "link": "https://www.lucidworks.com"
+  },
+  {
+    "name": "Sajari",
+    "description": "AI-powered search and recommendations",
+    "category": "Search",
+    "logo": "default.png",
+    "link": "https://www.sajari.com"
+  },
+  {
+    "name": "Yext",
+    "description": "AI-powered knowledge management platform",
+    "category": "Search",
+    "logo": "default.png",
+    "link": "https://www.yext.com"
+  },
+  {
+    "name": "Elasticsearch",
+    "description": "AI-powered search and analytics engine",
+    "category": "Search",
+    "logo": "default.png",
+    "link": "https://www.elastic.co"
+  },
+  {
+    "name": "Solr",
+    "description": "Open-source enterprise search platform",
+    "category": "Search",
+    "logo": "default.png",
+    "link": "https://solr.apache.org"
+  },
+  {
+    "name": "DeepL",
+    "description": "AI-powered translation tool",
+    "category": "Translation",
+    "logo": "default.png",
+    "link": "https://www.deepl.com"
+  }
+]
