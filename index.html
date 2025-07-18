@@ -59,34 +59,36 @@
       position: absolute;
       width: 60px;
       height: 60px;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="green"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><circle cx="35" cy="40" r="2" fill="black"/><circle cx="65" cy="40" r="2" fill="black"/><path d="M30 65 Q50 80 70 65" stroke="black" stroke-width="2" fill="none"/></svg>');
-      background-size: cover;
+      background-image: url('https://raw.githubusercontent.com/Crypto2199/t/main/frog.png');
+      background-size: contain;
+      background-repeat: no-repeat;
       bottom: 0;
       left: 60px;
+      transition: transform 0.1s;
     }
     .obstacle {
       position: absolute;
       width: 40px;
       height: 60px;
-      background-size: cover;
+      background-size: contain;
+      background-repeat: no-repeat;
       background-position: center;
       bottom: 0;
       right: -60px;
       display: none;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="40" width="60" height="60" fill="gray"/></svg>');
     }
     @keyframes moveObstacle {
       0%   { right: -60px; }
       100% { right: 740px; }
     }
     .jump {
-      animation: jump 0.5s ease-out;
+      animation: jump 0.7s cubic-bezier(0.5, -0.5, 0.5, 1.5);
       filter: drop-shadow(0 0 10px yellow);
     }
     @keyframes jump {
-      0%   { bottom: 0; }
-      50%  { bottom: 130px; }
-      100% { bottom: 0; }
+      0%   { bottom: 0; transform: scale(1); }
+      50%  { bottom: 180px; transform: scale(1.1, 0.9); }
+      100% { bottom: 0; transform: scale(1); }
     }
     .flash {
       animation: flashRed 0.3s;
@@ -157,6 +159,10 @@
     <button class="back-btn" onclick="goBackToStart()">رجوع</button>
   </div>
 
+  <audio id="jumpSound" src="https://raw.githubusercontent.com/Crypto2199/t/main/jump.mp3"></audio>
+  <audio id="failSound" src="https://raw.githubusercontent.com/Crypto2199/t/main/fail.mp3"></audio>
+  <audio id="bgMusic" src="https://raw.githubusercontent.com/Crypto2199/t/main/bgmusic.mp3" loop></audio>
+
   <script>
     const startScreen = document.getElementById("startScreen");
     const countdownScreen = document.getElementById("countdownScreen");
@@ -168,17 +174,23 @@
     const obstacle = document.getElementById("obstacle");
     const scoreDisplay = document.getElementById("score");
     const highScoreDisplay = document.getElementById("highScore");
+    const jumpSound = document.getElementById("jumpSound");
+    const failSound = document.getElementById("failSound");
+    const bgMusic = document.getElementById("bgMusic");
 
     let score = 0;
     let highScore = localStorage.getItem("highScore") || 0;
     let isGameOver = false;
+    let isJumping = false;
+    let canDoubleJump = false;
     let scoreInterval;
     let speed = 3.5;
     let gameStarted = false;
+    
     const obstacleImages = [
-      'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="40" width="60" height="60" fill="gray"/></svg>',
-      'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="30" y="50" width="40" height="50" fill="brown"/><ellipse cx="50" cy="40" rx="30" ry="20" fill="green"/></svg>',
-      'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="70" r="30" fill="brown"/><circle cx="30" cy="50" r="10" fill="brown"/><circle cx="70" cy="50" r="10" fill="brown"/></svg>'
+      'https://raw.githubusercontent.com/Crypto2199/t/main/rock.png',
+      'https://raw.githubusercontent.com/Crypto2199/t/main/bush.png',
+      'https://raw.githubusercontent.com/Crypto2199/t/main/snail.png'
     ];
 
     highScoreDisplay.textContent = `الأعلى: ${highScore}`;
@@ -219,19 +231,42 @@
         obstacle.style.animation = `moveObstacle ${speed}s linear infinite`;
         startScoring();
       }, 100);
+
+      // Start background music
+      bgMusic.volume = 0.3;
+      bgMusic.play().catch(e => console.log("Auto-play prevented:", e));
     }
 
     function jump() {
-      if (!player.classList.contains("jump") && !isGameOver && gameStarted) {
-        player.classList.add("jump");
-        setTimeout(() => {
-          player.classList.remove("jump");
-        }, 500);
+      if (!gameStarted || isGameOver) return;
+      
+      if (!isJumping) {
+        // Normal jump
+        performJump();
+      } else if (canDoubleJump) {
+        // Double jump
+        canDoubleJump = false;
+        player.style.animation = "none";
+        void player.offsetWidth;
+        performJump();
       }
     }
 
+    function performJump() {
+      isJumping = true;
+      player.classList.add("jump");
+      jumpSound.currentTime = 0;
+      jumpSound.play().catch(e => console.log("Jump sound error:", e));
+      
+      setTimeout(() => {
+        player.classList.remove("jump");
+        isJumping = false;
+        canDoubleJump = true;
+      }, 700);
+    }
+
     document.addEventListener("keydown", (e) => {
-      if (e.code === "Space") jump();
+      if (e.code === "Space" || e.key === "ArrowUp") jump();
     });
     document.addEventListener("click", jump);
 
@@ -241,10 +276,14 @@
         if (isGameOver) return;
         score++;
         scoreDisplay.textContent = `النقاط: ${score}`;
+        
+        // Increase speed every 100 points
         if (score % 100 === 0 && speed > 1.5) {
           speed -= 0.2;
           obstacle.style.animation = `moveObstacle ${speed}s linear infinite`;
         }
+        
+        // Change obstacle image every 20 points
         if (score % 20 === 0) {
           updateObstacleImage();
         }
@@ -252,8 +291,8 @@
     }
 
     function updateObstacleImage() {
-      const img = obstacleImages[Math.floor(Math.random() * obstacleImages.length)];
-      obstacle.style.backgroundImage = `url('${img}')`;
+      const randomIndex = Math.floor(Math.random() * obstacleImages.length);
+      obstacle.style.backgroundImage = `url('${obstacleImages[randomIndex]}')`;
     }
 
     function checkCollision() {
@@ -262,12 +301,13 @@
       const playerRect = player.getBoundingClientRect();
       const obstacleRect = obstacle.getBoundingClientRect();
 
-      // More accurate collision detection
+      // More accurate collision detection with tolerance
+      const collisionTolerance = 10;
       if (
-        playerRect.right > obstacleRect.left &&
-        playerRect.left < obstacleRect.right &&
-        playerRect.bottom > obstacleRect.top &&
-        playerRect.top < obstacleRect.bottom
+        playerRect.right > obstacleRect.left + collisionTolerance &&
+        playerRect.left < obstacleRect.right - collisionTolerance &&
+        playerRect.bottom > obstacleRect.top + collisionTolerance &&
+        playerRect.top < obstacleRect.bottom - collisionTolerance
       ) {
         endGame();
       }
@@ -282,12 +322,15 @@
       isGameOver = true;
       gameStarted = false;
       clearInterval(scoreInterval);
+      failSound.play().catch(e => console.log("Fail sound error:", e));
+      bgMusic.pause();
       game.classList.add("flash");
-      setTimeout(() => game.classList.remove("flash"), 200);
+      setTimeout(() => game.classList.remove("flash"), 300);
       obstacle.style.animation = "none";
       finalScore.textContent = `نتيجتك: ${score}`;
       gameOverScreen.style.display = "flex";
 
+      // Update high score
       if (score > highScore) {
         highScore = score;
         localStorage.setItem("highScore", score);
@@ -307,6 +350,7 @@
       gameOverScreen.style.display = "none";
       game.style.display = "none";
       startScreen.style.display = "flex";
+      bgMusic.pause();
       obstacle.style.animation = "none";
       obstacle.style.right = "-60px";
       gameStarted = false;
