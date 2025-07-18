@@ -59,7 +59,7 @@
       position: absolute;
       width: 60px;
       height: 60px;
-      background-image: url('frog.png');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="green"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><circle cx="35" cy="40" r="2" fill="black"/><circle cx="65" cy="40" r="2" fill="black"/><path d="M30 65 Q50 80 70 65" stroke="black" stroke-width="2" fill="none"/></svg>');
       background-size: cover;
       bottom: 0;
       left: 60px;
@@ -73,6 +73,7 @@
       bottom: 0;
       right: -60px;
       display: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="40" width="60" height="60" fill="gray"/></svg>');
     }
     @keyframes moveObstacle {
       0%   { right: -60px; }
@@ -156,10 +157,6 @@
     <button class="back-btn" onclick="goBackToStart()">رجوع</button>
   </div>
 
-  <audio id="jumpSound" src="jump.mp3"></audio>
-  <audio id="failSound" src="fail.mp3"></audio>
-  <audio id="bgMusic" src="bgmusic.mp3" loop></audio>
-
   <script>
     const startScreen = document.getElementById("startScreen");
     const countdownScreen = document.getElementById("countdownScreen");
@@ -171,16 +168,18 @@
     const obstacle = document.getElementById("obstacle");
     const scoreDisplay = document.getElementById("score");
     const highScoreDisplay = document.getElementById("highScore");
-    const jumpSound = document.getElementById("jumpSound");
-    const failSound = document.getElementById("failSound");
-    const bgMusic = document.getElementById("bgMusic");
 
     let score = 0;
     let highScore = localStorage.getItem("highScore") || 0;
     let isGameOver = false;
     let scoreInterval;
     let speed = 3.5;
-    const obstacleImages = ['rock.png', 'bush.png', 'snail.png'];
+    let gameStarted = false;
+    const obstacleImages = [
+      'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="40" width="60" height="60" fill="gray"/></svg>',
+      'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="30" y="50" width="40" height="50" fill="brown"/><ellipse cx="50" cy="40" rx="30" ry="20" fill="green"/></svg>',
+      'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="70" r="30" fill="brown"/><circle cx="30" cy="50" r="10" fill="brown"/><circle cx="70" cy="50" r="10" fill="brown"/></svg>'
+    ];
 
     highScoreDisplay.textContent = `الأعلى: ${highScore}`;
 
@@ -205,25 +204,26 @@
     function startGame() {
       game.style.display = "block";
       isGameOver = false;
+      gameStarted = true;
       score = 0;
+      speed = 3.5;
       scoreDisplay.textContent = `النقاط: 0`;
       obstacle.style.right = "-60px";
       obstacle.style.display = "block";
-      bgMusic.volume = 0.4;
-      bgMusic.play();
 
+      // Reset obstacle animation
+      obstacle.style.animation = "none";
+      void obstacle.offsetWidth; // Trigger reflow
+      
       setTimeout(() => {
         obstacle.style.animation = `moveObstacle ${speed}s linear infinite`;
         startScoring();
-        collisionCheckEnabled = true;
-      }, 1000);
+      }, 100);
     }
 
     function jump() {
-      if (!player.classList.contains("jump") && !isGameOver) {
+      if (!player.classList.contains("jump") && !isGameOver && gameStarted) {
         player.classList.add("jump");
-        jumpSound.currentTime = 0;
-        jumpSound.play();
         setTimeout(() => {
           player.classList.remove("jump");
         }, 500);
@@ -256,31 +256,40 @@
       obstacle.style.backgroundImage = `url('${img}')`;
     }
 
-    let collisionCheckEnabled = false;
-    setInterval(() => {
-      if (!collisionCheckEnabled || isGameOver) return;
+    function checkCollision() {
+      if (isGameOver || !gameStarted) return;
 
-      const playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
-      const obstacleRight = parseInt(window.getComputedStyle(obstacle).getPropertyValue("right"));
+      const playerRect = player.getBoundingClientRect();
+      const obstacleRect = obstacle.getBoundingClientRect();
 
-      if (obstacleRight > 60 && obstacleRight < 130 && playerBottom < 60) {
+      // More accurate collision detection
+      if (
+        playerRect.right > obstacleRect.left &&
+        playerRect.left < obstacleRect.right &&
+        playerRect.bottom > obstacleRect.top &&
+        playerRect.top < obstacleRect.bottom
+      ) {
         endGame();
       }
-    }, 10);
+    }
+
+    // Check for collisions at 60fps
+    setInterval(checkCollision, 1000/60);
 
     function endGame() {
+      if (isGameOver) return;
+      
       isGameOver = true;
+      gameStarted = false;
       clearInterval(scoreInterval);
-      failSound.play();
-      bgMusic.pause();
       game.classList.add("flash");
       setTimeout(() => game.classList.remove("flash"), 200);
       obstacle.style.animation = "none";
-      obstacle.style.right = window.getComputedStyle(obstacle).getPropertyValue("right");
       finalScore.textContent = `نتيجتك: ${score}`;
       gameOverScreen.style.display = "flex";
 
       if (score > highScore) {
+        highScore = score;
         localStorage.setItem("highScore", score);
         highScoreDisplay.textContent = `الأعلى: ${score}`;
       }
@@ -298,9 +307,9 @@
       gameOverScreen.style.display = "none";
       game.style.display = "none";
       startScreen.style.display = "flex";
-      bgMusic.pause();
       obstacle.style.animation = "none";
       obstacle.style.right = "-60px";
+      gameStarted = false;
     }
   </script>
 </body>
