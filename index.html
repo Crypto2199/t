@@ -65,6 +65,7 @@
       bottom: 0;
       left: 60px;
       transition: transform 0.1s;
+      z-index: 2;
     }
     .obstacle {
       position: absolute;
@@ -76,6 +77,7 @@
       bottom: 0;
       right: -60px;
       display: none;
+      z-index: 1;
     }
     @keyframes moveObstacle {
       0%   { right: -60px; }
@@ -86,9 +88,11 @@
       filter: drop-shadow(0 0 10px yellow);
     }
     @keyframes jump {
-      0%   { bottom: 0; transform: scale(1); }
-      50%  { bottom: 180px; transform: scale(1.1, 0.9); }
-      100% { bottom: 0; transform: scale(1); }
+      0%   { bottom: 0; transform: translateX(0) scale(1); }
+      25%  { transform: translateX(20px) scale(1.1, 0.9); }
+      50%  { bottom: 180px; transform: translateX(40px) scale(1); }
+      75%  { transform: translateX(60px) scale(0.9, 1.1); }
+      100% { bottom: 0; transform: translateX(80px) scale(1); }
     }
     .flash {
       animation: flashRed 0.3s;
@@ -186,6 +190,7 @@
     let scoreInterval;
     let speed = 3.5;
     let gameStarted = false;
+    let playerPosition = 60;
     
     const obstacleImages = [
       'https://raw.githubusercontent.com/Crypto2199/t/main/rock.png',
@@ -219,6 +224,8 @@
       gameStarted = true;
       score = 0;
       speed = 3.5;
+      playerPosition = 60;
+      player.style.left = playerPosition + "px";
       scoreDisplay.textContent = `النقاط: 0`;
       obstacle.style.right = "-60px";
       obstacle.style.display = "block";
@@ -262,6 +269,9 @@
         player.classList.remove("jump");
         isJumping = false;
         canDoubleJump = true;
+        // Update player position after jump
+        playerPosition += 80;
+        player.style.left = playerPosition + "px";
       }, 700);
     }
 
